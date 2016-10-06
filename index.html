@@ -1,28 +1,30 @@
 <!doctype html>
-<html ng-app="todoApp">
+<html ng-app="stockApp">
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="app.js"></script>
-    <link rel="stylesheet" href="app.css">
+    <script src="Vendor/angular.min.js"></script>
+    <script src="Js/app.js"></script>
+     <script src="Js/stock.js"></script>
+    <link rel="stylesheet" href="Style/app.css">
   </head>
   <body>
-    <h2>Titulo de la Aplicacion</h2>
-    <div ng-controller="TodoListController as todoList">
-      <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-      [ <a href="" ng-click="todoList.archive()">archive</a> ]
-      <ul class="unstyled">
-        <li ng-repeat="todo in todoList.todos">
-          <label class="checkbox">
-            <input type="checkbox" ng-model="todo.done">
-            <span class="done-{{todo.done}}">{{todo.text}}</span>
-          </label>
-        </li>
-      </ul>
-      <form ng-submit="todoList.addTodo()">
-        <input type="text" ng-model="todoList.todoText"  size="30"
-               placeholder="add new todo here">
-        <input class="btn-primary" type="submit" value="add">
-      </form>
+    <h2>Listado de productos</h2>
+    <div ng-controller="stockController as stockList">
+     <table style="width:100%">
+        <tr>
+          <th>Codigo</th>
+          <th>Descripcion</th> 
+          <th>Precio</th>
+          <th>Nota</th>
+        </tr>
+        <tbody>
+        <tr ng-repeat="prod in productos">
+          <td>{{prod.codigo}}</td>
+          <td>{{prod.descripcion}}</td> 
+          <td>{{prod.precio}}</td>
+          <td>{{prod.nota}}</td>
+        </tr>
+       </tbody>
+  </table>
     </div>
   </body>
 </html>
