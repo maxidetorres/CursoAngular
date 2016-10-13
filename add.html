@@ -13,10 +13,10 @@
       <form name="userForm" novalidate>
         <p>
             <span>Codigo:</span>
-            <input type="text" name="codigo" placeholder="Ingrese codigo articulo" pattern="[a-zA-Z]{2}[0-9]{3,}" ng-model="codigo" required/>
-            <span ng-show="userForm.codigo.$error.required">El campo es obligatorio.</span>
-            <span></span>
+            <input type="text" name="codigo" placeholder="Ingrese codigo articulo" pattern="[a-zA-Z]{2}[0-9]{3,}" ng-model="codigo" required/>   
         </p>
+        <p><span ng-show="userForm.codigo.$error.required">El campo es obligatorio.</span></p>
+        <p> <span ng-show="userForm.codigo.$invalid">Formato: 2 letras seguido de tres números></span></p>
         <p>
           <span>Descripcion: </span> 
           <input type="text" name="descripcion" placeholder="Descripcion articulo" ng-model="descripcion"  required/>
