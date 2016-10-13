@@ -4,6 +4,7 @@
     <script src="Vendor/angular.min.js"></script>
     <script src="Js/app.js"></script>
      <script src="Js/stock.js"></script>
+     <script type="text/javascript" src="Js/filter.js"></script>
     <link rel="stylesheet" href="Style/app.css">
   </head>
   <body>
@@ -20,7 +21,7 @@
         </tr>
         <tbody>
         <tr ng-repeat="prod in productos | filter:buscar">
-          <td>{{prod.codigo}}</td>
+          <td>{{prod.codigo | filterCodigo }}</td>
           <td>{{prod.descripcion}}</td> 
           <td>{{prod.precio | currency}}</td>
           <td>{{prod.nota}}</td>

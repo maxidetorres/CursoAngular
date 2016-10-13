@@ -1,51 +1,60 @@
 <!doctype html>
-<html ng-app="">
+<html ng-app="stockApp">
   <head>
     <script src="Vendor/angular.min.js"></script>
     <script src="Js/app.js"></script>
-     <script src="Js/stock.js"></script>
+    <script src="Js/stock.js"></script>
+    <script src="Js/filter.js"></script>
+     
   </head>
   <body>
     <h2>Agregar Articulo</h2>
-    <div ng-controller="stockController as stockList">
-     <table>
-          <tbody >
-        <tr>
-            <td>
-              <span>Codigo:</span> 
-            </td>
-            <td>
-                <input type="text" placeholder="Ingrese codigo articulo">
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span>Descripcion: </span> 
-            </td>
-            <td>
-              <input type="text" placeholder="Descripcion articulo">
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span>Precio: </span>
-            </td>
-            <td>
-              <input type="text" placeholder="Ingrese precio">
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span>Nota: </span>
-            </td>
-            <td>
-              <input type="text" placeholder="Ingrese Nota">
-            </td>
-        </tr>
-       
-      
-       </tbody>
-  </table>
+    <div ng-controller="stockController">
+      <form name="userForm" novalidate>
+        <p>
+            <span>Codigo:</span>
+            <input type="text" name="codigo" placeholder="Ingrese codigo articulo" ng-model="codigo" required/>
+            <span ng-show="userForm.codigo.$error.required">El campo es obligatorio.</span>
+        </p>
+        <p>
+          <span>Descripcion: </span> 
+          <input type="text" name="descripcion" placeholder="Descripcion articulo" ng-model="descripcion"  required/>
+          <span ng-show="userForm.descripcion.$error.required">El campo es obligatorio.</span>
+        </p>
+        <p>
+          <span>Precio: </span>
+          <input type="number" name="precio" placeholder="Ingrese precio" ng-model="precio" required/>
+          <span ng-show="userForm.precio.$error.required">El campo es obligatorio.</span>
+        </p>
+        <p>
+          <span>Nota: </span>
+          <input type="text" name="nota" placeholder="Ingrese Nota"  ng-model="nota" required/>
+        </p>
+        </br>
+          <input type="submit" ng-click="guardar()" value="Guardar" ng-model="muestra" ng-disabled="userForm.$invalid" />  
+          </br>
+            <div ng-controller="stockController"></div>
+            </br>
+           <table border="1"> 
+              <tr>
+                <th>Codigo</th>
+                <th>Descripcion</th> 
+                <th>Precio</th>
+                <th>Nota</th>
+                <th>Foto</th>
+              </tr>
+              <tbody>
+              <tr ng-repeat="prod in productos" ng-model="muestra">
+                <td>{{prod.codigo | filterCodigo }}</td>
+                <td>{{prod.descripcion}}</td> 
+                <td>{{prod.precio | currency}}</td>
+                <td>{{prod.nota}}</td>
+                 <td><img ng-src="Imagen/{{prod.imagen}}" width="100px" height="100px"></td>
+              </tr>
+             </tbody>
+        </table>
+          </div>
+    </form>
   
  </div>
   </body>
